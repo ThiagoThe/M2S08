@@ -1,8 +1,12 @@
+const { config } = require("dotenv");
+
+config();
+
 module.exports = {
-  dialect: "postgres",
-  host: "localhost",
-  username: "postgres",
-  password: "202123",
-  database: "postgres",
-  port: 5432,
+  host: process.env.HOST,
+  dialect: process.env.DIALECT,
+  username: process.env.USERNAMEDB,
+  password: process.env.PASSWORDDB,
+  database: process.env.DATABASE,
+  port: process.env.PORT,
 };
