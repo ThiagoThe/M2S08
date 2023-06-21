@@ -10,5 +10,4 @@ Faça uma plataforma de geração de contratos entre estagiários e empresas. Co
 
 - Express
 - ORM Sequelize
-- Sequelize - cli
 - Banco Postgres
