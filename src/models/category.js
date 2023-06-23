@@ -22,4 +22,4 @@ const category = connection.define("category", {
   },
 });
 
-module.exports = category;
+module.exports = { category };
