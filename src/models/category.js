@@ -5,6 +5,7 @@ const category = connection.define("category", {
   name: STRING,
   created_at: DATE,
   updated_at: DATE,
+  allowNull: false,
 });
 
 module.exports = category;
