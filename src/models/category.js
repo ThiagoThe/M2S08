@@ -1,3 +1,10 @@
-/*  npmx sequelize-cli model:generate --name Trainee --attributes name:string, created_at:date, update_at:date */
-/* npx sequelize-cli migration:generate --name nomequalquer */
-/*npx sequelize db:migrate*/
+const { connection } = require("../database/connection");
+const { STRING, DATE } = require("sequelize");
+
+const category = connection.define("category", {
+  name: STRING,
+  created_at: DATE,
+  updated_at: DATE,
+});
+
+module.exports = category;
