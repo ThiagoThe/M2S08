@@ -1,62 +1,67 @@
 const { connection } = require("../database/connection");
-const { STRING, DATE, INTEGER, BOOLEAN } = require("sequelize");
+const { STRING, DATE, INTEGER } = require("sequelize");
 
-const trainee = connection.define("trainee", {
+const companies = connection.define("companies", {
   id: {
     type: INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  email: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  rg: {
-    type: STRING(100),
+  cnpj: {
+    type: STRING(15),
     allowNull: false,
     unique: true,
   },
-  cpf: {
+  company_name: {
     type: STRING(100),
     allowNull: false,
-    unique: true,
   },
-  primary_phone_contact: {
+  contact: {
+    type: STRING(100),
+    allowNull: false,
+  },
+  cep: {
+    type: STRING(12),
+    allowNull: false,
+  },
+  adress: {
+    type: STRING(100),
+    allowNull: false,
+  },
+  neighborhood: {
+    type: STRING(100),
+    allowNull: false,
+  },
+  city: {
+    type: STRING(80),
+    allowNull: false,
+  },
+  state: {
     type: STRING(20),
     allowNull: false,
   },
-  secondary_phone_contact: {
-    type: STRING(20),
+  number: {
+    type: STRING(10),
+    allowNull: false,
   },
-  date_birth: {
+  complement: {
+    type: STRING(100),
+  },
+  rh_analyst_name: {
+    type: STRING(100),
+  },
+  supervisor_name: {
+    type: STRING(100),
+  },
+  created_at: {
     type: DATE,
     allowNull: false,
   },
-  father_name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  mother_name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  have_special_needs: {
-    type: BOOLEAN,
-    allowNull: false,
-  },
-  create_at: {
-    type: DATE,
-    allowNull: false,
-  },
-  update_at: {
+  updated_at: {
     type: DATE,
     allowNull: false,
   },
 });
 
-module.exports = trainee;
+modules.exports = companies;
