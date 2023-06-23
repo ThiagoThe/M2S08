@@ -6,29 +6,25 @@ module.exports = {
     await queryInterface.createTable("contract", {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
       },
       trainee_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "trainee",
+          model: "trainees",
           key: "id",
         },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
       },
       category_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "category",
+          model: "categories",
           key: "id",
         },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
       },
       company_id: {
         type: Sequelize.INTEGER,
@@ -37,8 +33,6 @@ module.exports = {
           model: "companies",
           key: "id",
         },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
       },
       start_validity: {
         type: Sequelize.DATEONLY,
@@ -63,10 +57,12 @@ module.exports = {
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     });
   },

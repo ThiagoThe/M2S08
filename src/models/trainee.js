@@ -1,62 +1,19 @@
 const { connection } = require("../database/connection");
-const { STRING, DATE, INTEGER, BOOLEAN } = require("sequelize");
+const { STRING, DATE, BOOLEAN } = require("sequelize");
 
 const trainee = connection.define("trainee", {
-  id: {
-    type: INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  email: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  rg: {
-    type: STRING(100),
-    allowNull: false,
-    unique: true,
-  },
-  cpf: {
-    type: STRING(100),
-    allowNull: false,
-    unique: true,
-  },
-  primary_phone_contact: {
-    type: STRING(20),
-    allowNull: false,
-  },
-  secondary_phone_contact: {
-    type: STRING(20),
-  },
-  date_birth: {
-    type: DATE,
-    allowNull: false,
-  },
-  father_name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  mother_name: {
-    type: STRING(100),
-    allowNull: false,
-  },
-  have_special_needs: {
-    type: BOOLEAN,
-    allowNull: false,
-  },
-  create_at: {
-    type: DATE,
-    allowNull: false,
-  },
-  update_at: {
-    type: DATE,
-    allowNull: false,
-  },
+  name: STRING,
+  created_at: DATE,
+  updated_at: DATE,
+  email: STRING,
+  rg: STRING,
+  cpf: STRING,
+  primary_phone_contact: STRING,
+  secondary_phone_contact: STRING,
+  date_birth: DATE,
+  father_name: STRING,
+  mother_name: STRING,
+  have_special_needs: BOOLEAN,
 });
 
 module.exports = trainee;

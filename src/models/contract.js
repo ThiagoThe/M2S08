@@ -1,78 +1,35 @@
-const { connection } = require("../database/connection");
-const {
-  STRING,
-  DATE,
-  BOOLEAN,
-  INTEGER,
-  FLOAT,
-  DATEONLY,
-} = require("sequelize");
+const { Sequelize } = require("sequelize");
+const connection = require(".././database/connection");
+const Category = require("./category");
+const Company = require("./company");
+const Trainee = require("./trainee");
 
 const contract = connection.define("contract", {
-  id: {
-    type: INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  trainee_id: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      model: "trainee",
-      key: "id",
-    },
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-  },
-  category_id: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      model: "category",
-      key: id,
-    },
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-  },
-  company_id: {
-    type: INTEGER,
-    allowNull: false,
-    references: {
-      model: companies,
-      key: id,
-    },
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-  },
   start_validity: {
-    type: DATEONLY,
+    type: Sequelize.DATEONLY,
     allowNull: false,
   },
   end_validity: {
-    type: DATEONLY,
+    type: Sequelize.DATEONLY,
     allowNull: false,
   },
   status: {
-    type: BOOLEAN,
+    type: Sequelize.BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
   remuneration: {
-    type: FLOAT,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   extra: {
-    type: FLOAT,
-    allowNull: false,
-  },
-  created_at: {
-    type: DATE,
-    allowNull: false,
-  },
-  updated_at: {
-    type: DATE,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
 });
+
+contract.belongsTo(Category, { foreignKey: "category_id" });
+contract.belongsTo(Company, { foreignKey: "company_id" });
+contract.belongsTo(Trainee, { foreignKey: "trainee_id" });
 
 module.exports = contract;
