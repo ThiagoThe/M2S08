@@ -1,30 +1,11 @@
-const express = require("express"); //Framework da aplicação
-const routerCategory = express.Router();
-const category = require(".././models/category");
+const { category } = require(".././models/category");
 
-// Rota para cadastrar uma nova categoria
-routerCategory.post("/category-add", async (req, res) => {
-  try {
+class categoryController {
+  async createOneCategory(req, res) {
     const { name } = req.body;
-    const newCategory = await category.create({ name });
-    res.json(newCategory);
-  } catch (error) {
-    res
-      .status(500)
-      .send({ error, message: "Não foi possível cadastrar a categoria" });
+    const data = await category.create({ name });
+    return res.status(201).send(data);
   }
-});
+}
 
-// Rota para listar todas as categorias
-routerCategory.get("/category-list", async (req, res) => {
-  try {
-    const categories = await category.findAll();
-    res.json(categories);
-  } catch (error) {
-    res
-      .status(500)
-      .send({ error, message: "Não foi possível listar as categorias" });
-  }
-});
-
-module.exports = routerCategory;
+module.exports = new categoryController();

@@ -1,12 +1,18 @@
 const express = require("express"); //Framework da aplicação
 const cors = require("cors"); // Biblioteca utilizada para inserir headers http
 const connection = require("./database/connection"); // Conexão com o banco de dados
+const routes = require("./routes"); // Rotas da aplicação
 
 class Server {
   constructor(app = express()) {
     this.middlewares(app);
     this.database();
+    this.routes(app); // rotas da app
     this.initializeServer(app);
+  }
+
+  async routes(app) {
+    app.use(routes);
   }
 
   async initializeServer(app) {
