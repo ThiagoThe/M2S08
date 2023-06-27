@@ -1,12 +1,16 @@
-const { router } = require("express");
-const { createOneCategory } = require("../controllers/category.controller");
+const { Router } = require("express");
+const {
+  createOneCategory,
+  listCategories,
+} = require("../controllers/category.controller");
 
-class categoryRoutes {
+class CategoryRouter {
   routesFromCategory() {
-    const categoryRoutes = router();
+    const categoryRoutes = Router();
     categoryRoutes.post("/createOneCategory", createOneCategory);
+    categoryRoutes.get("/listCategories", listCategories);
     return categoryRoutes;
   }
 }
 
-module.exports = new categoryRoutes();
+module.exports = new CategoryRouter();

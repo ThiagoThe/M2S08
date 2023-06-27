@@ -1,5 +1,8 @@
-const { router } = require("express");
+const { Router } = require("express");
 const { routesFromCategory } = require("./category.routes");
-const routes = router();
-routes.use("api", [routesFromCategory]);
+
+const routes = new Router();
+
+routes.use("/api", [routesFromCategory()]);
+
 module.exports = routes;

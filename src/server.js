@@ -4,14 +4,14 @@ const connection = require("./database/connection"); // Conexão com o banco de 
 const routes = require("./routes"); // Rotas da aplicação
 
 class Server {
-  constructor(app = express()) {
-    this.middlewares(app);
+  constructor(server = express()) {
+    this.middlewares(server);
     this.database();
-    this.routes(app); // rotas da app
-    this.initializeServer(app);
+    this.allRoutes(server); // rotas da app
+    this.initializeServer(server);
   }
 
-  async routes(app) {
+  async allRoutes(app) {
     app.use(routes);
   }
 
