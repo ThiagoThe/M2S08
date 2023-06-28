@@ -3,18 +3,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("contract", {
+    await queryInterface.createTable("contracts", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      trainee_id: {
+      trainees_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "trainee",
+          model: "trainees",
           key: "id",
         },
       },
@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "category",
+          model: "categories",
           key: "id",
         },
       },

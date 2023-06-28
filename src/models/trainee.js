@@ -1,25 +1,17 @@
-const { connection } = require("../database/connection");
 const { STRING, DATE, BOOLEAN } = require("sequelize");
+const connection = require("../database/connection");
 
-const trainee = connection.define(
+const Trainee = connection.define(
   "trainee",
   {
     name: STRING,
-    created_at: DATE,
-    updated_at: DATE,
-    email: {
-      validate: {
-        isEmail: {
-          msg: "O campo enviado deve ser um e-mail válido!",
-        },
-      },
-    },
+    email: STRING,
     rg: {
       type: STRING,
       validate: {
-        min: {
-          args: 7,
-          msg: "O campo RG deve ter no mínimo 7 caracteres!",
+        len: {
+          args: [7, 20],
+          msg: "O Rg deve ter no mínimo 7 dígitos",
         },
       },
       unique: {
@@ -31,24 +23,28 @@ const trainee = connection.define(
       validate: {
         len: {
           args: [11, 11],
-          msg: "O campo CPF deve ter exatamente 11 caracteres!",
+          msg: "Este campo deve ter exatamente 11 caracteres.",
         },
       },
       unique: {
         msg: "Este campo já está na aplicação",
       },
     },
-    primary_phone_contact: STRING,
-    secondary_phone_contact: {
+    primaryPhoneContact: STRING,
+    secondaryPhoneContact: {
       type: STRING,
       allowNull: true,
     },
-    date_birth: DATE,
-    father_name: STRING,
-    mother_name: STRING,
-    have_special_needs: BOOLEAN,
+    dateBirth: DATE,
+    fatherName: STRING,
+    motherName: STRING,
+    haveSpecialNeeds: BOOLEAN,
+    createdAt: DATE,
+    updatedAt: DATE,
   },
   { underscored: true }
 );
 
-module.exports = { trainee };
+module.exports = {
+  Trainee,
+};

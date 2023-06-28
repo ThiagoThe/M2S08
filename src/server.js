@@ -30,7 +30,8 @@ class Server {
       await connection.authenticate();
       console.log("Conexão com o banco de dados estabelecida com sucesso!");
     } catch (error) {
-      console.log("não foi possivel autenticar");
+      console.log("não foi possivel autenticar", error);
+      throw error;
     }
   }
 }

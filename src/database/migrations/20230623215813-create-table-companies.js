@@ -11,50 +11,50 @@ module.exports = {
         primaryKey: true,
       },
       cnpj: {
-        type: Sequelize.STRING(15),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
       company_name: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       contact: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       cep: {
-        type: Sequelize.STRING(12),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       adress: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       neighborhood: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       city: {
-        type: Sequelize.STRING(80),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       state: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       number: {
-        type: Sequelize.STRING(10),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       complement: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
       },
       rh_analyst_name: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
       },
       supervisor_name: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
       },
       created_at: {
         type: Sequelize.DATE,

@@ -1,31 +1,15 @@
-const { Sequelize } = require("sequelize");
+const { FLOAT, DATEONLY, BOOLEAN } = require("sequelize");
 const connection = require(".././database/connection");
 const Category = require("./category");
 const Company = require("./company");
 const Trainee = require("./trainee");
 
 const contract = connection.define("contract", {
-  start_validity: {
-    type: Sequelize.DATEONLY,
-    allowNull: false,
-  },
-  end_validity: {
-    type: Sequelize.DATEONLY,
-    allowNull: false,
-  },
-  status: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  },
-  remuneration: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  extra: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
+  startValidity: DATEONLY,
+  endValidity: DATEONLY,
+  status: BOOLEAN,
+  remuneration: FLOAT,
+  extra: FLOAT,
 });
 
 contract.belongsTo(Category, { foreignKey: "category_id" });

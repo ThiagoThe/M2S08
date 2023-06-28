@@ -9,8 +9,8 @@ module.exports = {
   password: process.env.PASSWORDDB,
   database: process.env.DATABASE,
   port: process.env.PORT,
-   define: {
+  /* define: {
    underscored: true, //traduz os campos para snake_case
   underscoredAll: true, //traduz os campos para snake_case
-  },
+  }, */
 };
