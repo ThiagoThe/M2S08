@@ -9,7 +9,8 @@ const Category = connection.define(
     updatedAt: DATE,
   },
   {
-    underscored: true, //traduz os campos para snake_case
+    underscored: true,
+    paranoid: true,
   }
 );
 
