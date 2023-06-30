@@ -1,7 +1,7 @@
 const connection = require("../database/connection");
 const { STRING, DATE } = require("sequelize");
 
-const Companies = connection.define(
+const Company = connection.define(
   "companies",
   {
     cnpj: {
@@ -31,8 +31,9 @@ const Companies = connection.define(
     updatedAt: DATE,
   },
   {
-    underscored: true, //traduz os campos para snake_case
+    underscored: true,
+    paranoid: true,
   }
 );
 
-module.exports = { Companies };
+module.exports = { Company };
