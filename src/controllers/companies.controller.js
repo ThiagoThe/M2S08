@@ -1,4 +1,4 @@
-const { Companies } = require("../models/companies");
+const { Company } = require("../models/companies");
 
 class CompaniesController {
   async createOneCompany(req, res) {
@@ -18,7 +18,7 @@ class CompaniesController {
     } = req.body;
 
     try {
-      const newCompany = await Companies.create({
+      const newCompany = await Company.create({
         companyName,
         cnpj,
         contact,
@@ -44,7 +44,7 @@ class CompaniesController {
   }
 
   async listCompanies(req, res) {
-    const data = await Companies.findAll();
+    const data = await Company.findAll();
 
     try {
       return res.status(200).send(data);
@@ -61,7 +61,7 @@ class CompaniesController {
     const { id } = req.params;
 
     try {
-      const data = await Companies.findByPk(id);
+      const data = await Company.findByPk(id);
       return res.status(200).send(data);
     } catch (error) {
       console.error(error.message);
@@ -90,7 +90,7 @@ class CompaniesController {
     } = req.body;
 
     try {
-      const data = await Companies.update(
+      const data = await Company.update(
         {
           companyName,
           cnpj,
@@ -122,7 +122,7 @@ class CompaniesController {
     const { id } = req.params;
 
     try {
-      const data = await Companies.destroy({ where: { id } });
+      const data = await Company.destroy({ where: { id } });
       return res.status(200).send(data);
     } catch (error) {
       console.error(error.message);

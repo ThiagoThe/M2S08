@@ -23,6 +23,7 @@ class ContractController {
         company_id,
         trainee_id,
       });
+      return res.status(201).send(newContract);
     } catch (error) {
       console.error(error.message);
       return res.status(400).send({
@@ -34,14 +35,13 @@ class ContractController {
 
   async listAllContracts(req, res) {
     try {
-      const allContracts = await Contract
-        .findAll
-        /*   include: [
+      const allContracts = await Contract.findAll({
+        include: [
           { model: Trainee, attributes: ["name", "rg"] },
           { model: Company, attributes: ["companyName", "cnpj"] },
           { model: Category, attributes: ["name"] },
-        ] */
-        ();
+        ],
+      });
       return res.status(200).send(allContracts);
     } catch (error) {
       console.error(error.message);
