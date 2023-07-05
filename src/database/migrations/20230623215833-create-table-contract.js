@@ -10,29 +10,35 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      traineesId: {
+      trainee_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: "trainees",
+          model: {
+            tableName: "trainees",
+          },
           key: "id",
         },
+        allowNull: false,
       },
-      categoryId: {
+      category_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: "categories",
+          model: {
+            tableName: "categories",
+          },
           key: "id",
         },
+        allowNull: false,
       },
-      companyId: {
+      company_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: "companies",
+          model: {
+            tableName: "companies",
+          },
           key: "id",
         },
+        allowNull: false,
       },
       start_validity: {
         type: Sequelize.DATEONLY,
@@ -54,11 +60,11 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      createdAt: {
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updatedAt: {
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },

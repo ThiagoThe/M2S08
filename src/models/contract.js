@@ -7,7 +7,7 @@ const { Trainee } = require("./trainee");
 const Contract = connection.define(
   "contract",
   {
-    traineesId: {
+    traineeId: {
       type: INTEGER,
       references: {
         model: Trainee,

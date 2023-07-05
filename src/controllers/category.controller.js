@@ -13,6 +13,8 @@ class CategoryController {
   }
 
   async listOneCategory(req, res) {
+    const { Authorization } = req.headers;
+
     const { id } = req.params;
     const data = await Category.findByPk(id);
     return res.status(200).send(data);

@@ -3,25 +3,26 @@ const { Contract } = require("../models/contract");
 class ContractController {
   async createOneContract(req, res) {
     const {
+      traineeId,
+      categoryId,
+      companyId,
       startValidity,
       endValidity,
+      status,
       remuneration,
       extra,
-      category_id,
-      company_id,
-      trainee_id,
     } = req.body;
 
     try {
       const newContract = await Contract.create({
+        traineeId,
+        categoryId,
+        companyId,
         startValidity,
         endValidity,
-        status: true,
+        status,
         remuneration,
         extra,
-        category_id,
-        company_id,
-        trainee_id,
       });
       return res.status(201).send(newContract);
     } catch (error) {
@@ -35,14 +36,39 @@ class ContractController {
 
   async listAllContracts(req, res) {
     try {
-      const allContracts = await Contract.findAll({
+      const data = await Contract.findAll({
         include: [
-          { model: Trainee, attributes: ["name", "rg"] },
-          { model: Company, attributes: ["companyName", "cnpj"] },
-          { model: Category, attributes: ["name"] },
+          {
+            model: Trainee,
+            attributes: ["name", "primaryPhoneContact"],
+          },
+          {
+            model: Company,
+            attributes: ["companyName", "supervisorName"],
+          },
+          {
+            model: Category,
+            attributes: ["name"],
+          },
         ],
+        order: [["id", "ASC"]],
       });
-      return res.status(200).send(allContracts);
+
+      const result = data.map((item) => {
+        const rest = JSON.parse(JSON.stringify(item));
+        return {
+          ...rest,
+          traineeName: item.trainee.name,
+          primaryPhoneContact: item.trainee.primaryPhoneContact,
+          companyName: item.company.companyName,
+          supervisorName: item.company.supervisorName,
+          categoryName: item.category.name,
+        };
+      });
+
+      const total = await Contract.count();
+
+      return response.status(200).send({ records: result, total });
     } catch (error) {
       console.error(error.message);
       return res.status(400).send({
